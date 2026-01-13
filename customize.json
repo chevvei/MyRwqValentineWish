@@ -1,10 +1,11 @@
 {
   "name": "阮维清",
   "greetingText": "I really like your name 清清 btw!",
-  "wishText": 
-  "我曾奔跑着追赶一趟列车
-   只为让两杯奶茶的甜
-   赶在闸门关闭之前
-   漫进你的旅途",
+  "wishText": [
+    "我曾奔跑着追赶一趟列车",
+    "只为让两杯奶茶的甜",
+    "赶在闸门关闭之前",
+    "漫进你的旅途"
+  ],
   "imagePath": "img/vector.jpg"
 }

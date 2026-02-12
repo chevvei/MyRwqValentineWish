@@ -181,6 +181,11 @@ const animationTimeline = () => {
       },
       0.2
     )
+    .to(".six", 0.8, {
+      opacity: 1,
+      y: 0,
+      visibility: "visible",
+    }, "-=1")
     .from(
       ".girl-dp",
       0.5,
@@ -250,10 +255,8 @@ const animationTimeline = () => {
       },
       0.3
     )
-    .to(".six", 0.5, {
-      opacity: 0,
-      y: 30,
-      zIndex: "-1",
+    .to(".heart-gallery", 0.5, {
+      opacity: 0.4,
     })
     .staggerFrom(".nine p", 1, ideaTextTrans, 1.2)
     .to(
@@ -302,4 +305,41 @@ const resolveFetch = () => {
   });
 };
 
-resolveFetch().then(animationTimeline());
+// expose a starter so we can control when the animation begins (after login)
+window.startApp = () => {
+  resolveFetch().then(animationTimeline);
+};
+
+// Simple login handling: show container and start app when correct password entered
+const setupLogin = () => {
+  const passBtn = document.getElementById("passBtn");
+  const passInput = document.getElementById("passInput");
+  const cover = document.getElementById("cover");
+  const container = document.getElementsByClassName("container")[0];
+
+  const tryUnlock = () => {
+    const val = passInput && passInput.value && passInput.value.trim();
+    if (val === "13161611162") {
+      if (cover) cover.style.display = "none";
+      if (container) container.style.visibility = "visible";
+      if (window.startApp) window.startApp();
+      const one = document.getElementsByClassName("one")[0];
+      if (one) one.scrollIntoView({ behavior: "smooth" });
+    } else if (passInput) {
+      passInput.classList.add("shake");
+      setTimeout(() => passInput.classList.remove("shake"), 600);
+    }
+  };
+
+  if (passBtn) passBtn.addEventListener("click", tryUnlock);
+  if (passInput)
+    passInput.addEventListener("keyup", (e) => {
+      if (e.key === "Enter") tryUnlock();
+    });
+};
+
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", setupLogin);
+} else {
+  setupLogin();
+}

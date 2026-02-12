@@ -563,7 +563,7 @@ h1, h2, h3, h4, h5, h6 {
   width: calc(100% - 28px);
   height: 36px;
   margin: 10px 14px 0 14px;
-  background: transparent;
+  background: #ffffff;
 }
 .player-shape .hidden-when-audio { display: block; }
 

@@ -315,6 +315,8 @@ const setupMusicUI = () => {
   const playerShape = document.getElementById("playerShape");
   const collapseToggle = document.getElementById("collapseToggle");
   const musicPlayer = document.getElementById("musicPlayer");
+  const musicAudio = document.getElementById("musicAudio");
+  const musicIframe = document.getElementById("musicIframe");
   if (lyricsToggle && lyricsPanel) {
     lyricsToggle.addEventListener("click", () => {
       const open = lyricsPanel.classList.toggle("open");
@@ -335,6 +337,82 @@ const setupMusicUI = () => {
       const collapsed = musicPlayer.classList.toggle("collapsed");
       collapseToggle.innerText = collapsed ? "展开" : "收起";
     });
+  }
+
+  // ensure audio is usable: if audio fails to load, show iframe instead
+  if (musicAudio && musicIframe) {
+    musicAudio.addEventListener('error', () => {
+      musicAudio.style.display = 'none';
+      musicIframe.style.display = 'block';
+    });
+    // prefer audio as main control; hide iframe height shrink
+    musicIframe.style.height = '260px';
+    // attempt autoplay on load
+    try {
+      musicAudio.autoplay = true;
+      const playPromise = musicAudio.play();
+      if (playPromise && typeof playPromise.then === 'function') {
+        playPromise.catch(() => {
+          // autoplay prevented by browser; keep collapsed but allow user to play
+        });
+      }
+    } catch (e) {
+      // ignore
+    }
+  }
+
+  // make player draggable
+  const makeDraggable = (el) => {
+    if (!el) return;
+    el.style.left = el.style.left || (window.innerWidth - el.offsetWidth - 18) + 'px';
+    el.style.top = el.style.top || '18px';
+    el.style.position = 'fixed';
+    let isDown = false;
+    let startX = 0;
+    let startY = 0;
+    let origX = 0;
+    let origY = 0;
+
+    const onDown = (clientX, clientY) => {
+      isDown = true;
+      startX = clientX;
+      startY = clientY;
+      origX = parseInt(el.style.left, 10) || 0;
+      origY = parseInt(el.style.top, 10) || 0;
+      el.classList.add('dragging');
+    };
+    const onMove = (clientX, clientY) => {
+      if (!isDown) return;
+      const dx = clientX - startX;
+      const dy = clientY - startY;
+      let nx = origX + dx;
+      let ny = origY + dy;
+      nx = Math.max(8, Math.min(nx, window.innerWidth - el.offsetWidth - 8));
+      ny = Math.max(8, Math.min(ny, window.innerHeight - el.offsetHeight - 8));
+      el.style.left = nx + 'px';
+      el.style.top = ny + 'px';
+    };
+    const onUp = () => {
+      if (!isDown) return;
+      isDown = false;
+      el.classList.remove('dragging');
+    };
+
+    el.addEventListener('mousedown', (e) => { onDown(e.clientX, e.clientY); e.preventDefault(); });
+    document.addEventListener('mousemove', (e) => onMove(e.clientX, e.clientY));
+    document.addEventListener('mouseup', onUp);
+
+    // touch
+    el.addEventListener('touchstart', (e) => { const t = e.touches[0]; onDown(t.clientX, t.clientY); e.preventDefault(); }, { passive: false });
+    document.addEventListener('touchmove', (e) => { if (e.touches && e.touches[0]) { const t = e.touches[0]; onMove(t.clientX, t.clientY); } }, { passive: false });
+    document.addEventListener('touchend', onUp);
+  };
+
+  makeDraggable(musicPlayer);
+  // ensure collapse button label matches initial state
+  if (musicPlayer && collapseToggle) {
+    const isCollapsed = musicPlayer.classList.contains('collapsed');
+    collapseToggle.innerText = isCollapsed ? '展开' : '收起';
   }
 };
 

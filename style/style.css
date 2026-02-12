@@ -494,6 +494,9 @@ h1, h2, h3, h4, h5, h6 {
   pointer-events: auto;
 }
 
+/* allow dragging visual */
+.music-player.dragging { cursor: grabbing; }
+
 /* Player shape container */
 .player-shape {
   width: 360px;
@@ -525,6 +528,21 @@ h1, h2, h3, h4, h5, h6 {
   border: none;
   pointer-events: auto;
 }
+
+/* audio control styling inside the player */
+.player-shape audio {
+  position: relative;
+  width: calc(100% - 28px);
+  height: 36px;
+  margin: 10px 14px 0 14px;
+  background: transparent;
+}
+.player-shape .hidden-when-audio { display: block; }
+
+/* when audio present we reduce iframe height; hide iframe on very small players */
+.music-player.collapsed .player-shape iframe,
+.music-player.collapsed .player-shape audio { display: none; }
+.music-player.collapsed { pointer-events: auto; }
 
 .player-controls {
   position: absolute;
@@ -562,6 +580,88 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 1.6;
   text-align: left;
   overflow: auto;
+}
+
+/* Cover/login flower-script styling */
+.cover h1 {
+  /* Chinese decorative script for headline */
+  font-family: 'Ma Shan Zheng', 'Great Vibes', 'Dancing Script', cursive;
+  font-size: 3.2rem;
+  letter-spacing: 0.6px;
+  color: #7b1f3a;
+  text-shadow: 0 2px 8px rgba(123,31,58,0.08);
+}
+.cover-prompt {
+  /* use a readable serif Chinese for the prompt */
+  font-family: 'Noto Serif SC', 'Quicksand', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  font-size: 1.05rem;
+  color: #7b1f3a;
+}
+
+/* Login inputs/buttons use the serif for Chinese with fallback to Quicksand */
+.login-box input,
+.login-box button,
+.login-hint {
+  font-family: 'Noto Serif SC', 'Quicksand', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+}
+.login-box input::placeholder { color: rgba(123,31,58,0.6); }
+
+/* Handwritten/modern Chinese theme for inputs and buttons */
+.cover h1, .cover-prompt { text-rendering: optimizeLegibility; }
+.login-box input {
+  padding: 12px 14px 12px 44px;
+  border-radius: 12px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+  background-color: rgba(255,250,250,0.95);
+  box-shadow: 0 6px 18px rgba(189, 18, 80, 0.06) inset;
+  transition: box-shadow 0.18s ease, transform 0.1s ease;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'><text x='0' y='18' font-size='18' fill='%23ff6aa3'>❤</text></svg>");
+  background-repeat: no-repeat;
+  background-position: 12px center;
+  font-family: 'Zhi Mang Xing', 'ZCOOL QingKe HuangYou', 'Noto Serif SC', serif;
+}
+.login-box input:focus { outline: none; box-shadow: 0 10px 30px rgba(255,105,180,0.12); transform: translateY(-2px); }
+
+.login-box button {
+  margin-top:10px;
+  padding: 10px 20px;
+  border-radius: 14px;
+  border: none;
+  cursor:pointer;
+  background: linear-gradient(90deg,#ff9ec6,#ff7aa2);
+  color: #fff;
+  font-weight: 600;
+  box-shadow: 0 8px 26px rgba(255,105,180,0.18);
+  font-family: 'ZCOOL QingKe HuangYou', 'Zhi Mang Xing', 'Quicksand', sans-serif;
+  position: relative;
+}
+.login-box button::before {
+  content: '❤';
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 14px;
+}
+
+/* decorative floral border for the login area */
+.cover-content {
+  position: relative;
+  padding: 46px;
+  border-radius: 18px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.14), rgba(255,245,247,0.12));
+  box-shadow: 0 12px 40px rgba(189,18,80,0.06);
+  border: 1px solid rgba(255,230,236,0.4);
+}
+.cover-content::after {
+  content: '';
+  position: absolute;
+  left: -8px; top: -8px; right: -8px; bottom: -8px;
+  border-radius: 22px;
+  pointer-events: none;
+  background: linear-gradient(135deg, rgba(255,153,180,0.04) 0%, rgba(255,105,180,0.02) 25%, rgba(255,154,160,0.02) 50%, transparent 60%);
+  mix-blend-mode: overlay;
 }
 
 /* Collapsed player: shrink into a small pill to avoid covering content */

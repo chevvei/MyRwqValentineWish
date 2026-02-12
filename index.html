@@ -16,18 +16,20 @@
     <title>qin❤️cv( ˃̶̤́ ꒳ ˂̶̤̀ )❤️ 清清，Happy Valentine ,from 很想离你近一点的男网友 cv :):):)</title>
     <link rel="shortcut icon" type="image/png" href="./img/heart.svg" />
     <link rel="stylesheet" href="style/style.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Quicksand:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Ma+Shan+Zheng&family=Zhi+Mang+Xing&family=ZCOOL+QingKe+HuangYou&family=Dancing+Script:wght@400;700&family=Quicksand:wght@300;400;500;600&family=Noto+Serif+SC:wght@300;400;700&display=swap" rel="stylesheet">
   </head>
 
   <body>
-    <div class="music-player" id="musicPlayer">
+    <div class="music-player collapsed" id="musicPlayer">
       <div class="player-shape shape-iframe" id="playerShape">
         <!-- 网易云内嵌播放器：我们俩 - 郭顶（带歌词） -->
-        <iframe id="musicIframe" frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="450" src="//music.163.com/outchain/player?type=2&id=85571&auto=0&height=430" allow="autoplay"></iframe>
+        <iframe id="musicIframe" class="hidden-when-audio" frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="260" src="//music.163.com/outchain/player?type=2&id=85571&auto=0&height=240" allow="autoplay"></iframe>
+        <!-- 可播放的 audio（备用/主播放控件，使用网易云公开外链） -->
+        <audio id="musicAudio" controls preload="none" src="https://music.163.com/song/media/outer/url?id=85571.mp3"></audio>
         <div class="player-controls">
           <button id="lyricsToggle" title="显示/隐藏歌词">歌词</button>
           <button id="shapeToggle" title="切换播放器形状">形状</button>
-          <button id="collapseToggle" title="收起/展开播放器">收起</button>
+          <button id="collapseToggle" title="收起/展开播放器">展开</button>
         </div>
       </div>
 

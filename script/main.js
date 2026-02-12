@@ -313,6 +313,8 @@ const setupMusicUI = () => {
   const lyricsPanel = document.getElementById("lyricsPanel");
   const shapeToggle = document.getElementById("shapeToggle");
   const playerShape = document.getElementById("playerShape");
+  const collapseToggle = document.getElementById("collapseToggle");
+  const musicPlayer = document.getElementById("musicPlayer");
   if (lyricsToggle && lyricsPanel) {
     lyricsToggle.addEventListener("click", () => {
       const open = lyricsPanel.classList.toggle("open");
@@ -326,6 +328,12 @@ const setupMusicUI = () => {
       playerShape.classList.remove(...shapes);
       idx = (idx + 1) % shapes.length;
       playerShape.classList.add(shapes[idx]);
+    });
+  }
+  if (collapseToggle && musicPlayer) {
+    collapseToggle.addEventListener("click", () => {
+      const collapsed = musicPlayer.classList.toggle("collapsed");
+      collapseToggle.innerText = collapsed ? "展开" : "收起";
     });
   }
 };

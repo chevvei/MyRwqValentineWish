@@ -13,7 +13,7 @@
                    frame-src 'self' https://music.163.com https://open.spotify.com https://player.vimeo.com https://www.youtube.com;
                    media-src 'self' https://*;
                    connect-src 'self' https://*;">
-    <title>❤️( ˃̶̤́ ꒳ ˂̶̤̀ )❤️ 清清，Happy Valentine ,from 很想离你近一点的男网友 cv :):):)</title>
+    <title>qin❤️cv( ˃̶̤́ ꒳ ˂̶̤̀ )❤️ 清清，Happy Valentine ,from 很想离你近一点的男网友 cv :):):)</title>
     <link rel="shortcut icon" type="image/png" href="./img/heart.svg" />
     <link rel="stylesheet" href="style/style.css" />
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Quicksand:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -21,11 +21,13 @@
 
   <body>
     <div class="music-player" id="musicPlayer">
-      <div class="player-shape shape-pill" id="playerShape">
-        <iframe id="musicIframe" frameborder="no" border="0" marginwidth="0" marginheight="0" width="100%" height="100%" src="//music.163.com/outchain/player?type=2&id=1861632812&auto=1&height=66" allow="autoplay"></iframe>
+      <div class="player-shape shape-iframe" id="playerShape">
+        <!-- 网易云内嵌播放器：我们俩 - 郭顶（带歌词） -->
+        <iframe id="musicIframe" frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="450" src="//music.163.com/outchain/player?type=2&id=85571&auto=0&height=430" allow="autoplay"></iframe>
         <div class="player-controls">
           <button id="lyricsToggle" title="显示/隐藏歌词">歌词</button>
           <button id="shapeToggle" title="切换播放器形状">形状</button>
+          <button id="collapseToggle" title="收起/展开播放器">收起</button>
         </div>
       </div>
 

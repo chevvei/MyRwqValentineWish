@@ -289,12 +289,45 @@ const fetchData = () => {
             document
               .getElementById(customData)
               .setAttribute("src", data[customData]);
+          } else if (customData === "wishText" && Array.isArray(data[customData])) {
+            // populate lyrics panel if wishText array exists
+            const lyricsInner = document.getElementById("lyricsInner");
+            if (lyricsInner) {
+              lyricsInner.innerHTML = data[customData].map((l) => l).join("<br>");
+            }
+            // also set #wishText for page content if exists
+            const wishTextEl = document.getElementById("wishText");
+            if (wishTextEl) wishTextEl.innerText = data[customData].join(" \n");
           } else {
-            document.getElementById(customData).innerText = data[customData];
+            const el = document.getElementById(customData);
+            if (el) el.innerText = data[customData];
           }
         }
       });
     });
+};
+
+// Lyrics and player shape interactions
+const setupMusicUI = () => {
+  const lyricsToggle = document.getElementById("lyricsToggle");
+  const lyricsPanel = document.getElementById("lyricsPanel");
+  const shapeToggle = document.getElementById("shapeToggle");
+  const playerShape = document.getElementById("playerShape");
+  if (lyricsToggle && lyricsPanel) {
+    lyricsToggle.addEventListener("click", () => {
+      const open = lyricsPanel.classList.toggle("open");
+      lyricsPanel.setAttribute("aria-hidden", !open);
+    });
+  }
+  if (shapeToggle && playerShape) {
+    const shapes = ["shape-pill", "shape-round", "shape-blob"];
+    let idx = 0;
+    shapeToggle.addEventListener("click", () => {
+      playerShape.classList.remove(...shapes);
+      idx = (idx + 1) % shapes.length;
+      playerShape.classList.add(shapes[idx]);
+    });
+  }
 };
 
 // Run fetch and animation in sequence
@@ -342,4 +375,11 @@ if (document.readyState === "loading") {
   document.addEventListener("DOMContentLoaded", setupLogin);
 } else {
   setupLogin();
+}
+
+// init music UI controls regardless of ready state
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", setupMusicUI);
+} else {
+  setupMusicUI();
 }

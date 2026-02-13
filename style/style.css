@@ -48,12 +48,12 @@ h1, h2, h3, h4, h5, h6 {
 .cover-prompt {
   margin: 0 0 14px 0;
   color: #f191ae;
-  font-size: 1rem;
+  font-size: 2rem;
 }
 .login-box { display: flex; flex-direction: column; align-items: center; }
 .login-box input { padding: 10px 12px; border-radius: 8px; border: 2px solid rgba(255,255,255,0.6); width: 220px; font-size: 1rem; outline:none; }
 .login-box button { margin-top:10px; padding: 8px 18px; border-radius: 8px; border: none; background: #ff7aa2; color: #fff; cursor:pointer; }
-.login-hint { font-size: 0.85rem; color: #7b1f3a; margin-top:8px; }
+.login-hint { font-size: 2rem; color: #e6658c; margin-top:8px; }
 
 /* shake animation for wrong password */
 .shake { animation: shake 0.6s; }
@@ -648,23 +648,24 @@ h1, h2, h3, h4, h5, h6 {
   font-family: 'Ma Shan Zheng', 'Great Vibes', 'Dancing Script', cursive;
   font-size: 3.2rem;
   letter-spacing: 0.6px;
-  color: #7b1f3a;
+ color: #c4486d;
   text-shadow: 0 2px 8px rgba(123,31,58,0.08);
 }
 .cover-prompt {
-  /* use a readable serif Chinese for the prompt */
-  font-family: 'Noto Serif SC', 'Quicksand', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-  font-size: 1.05rem;
-  color: #7b1f3a;
+  /* 使用用户指定的手写风格字体 */
+  font-family: 'Zhi Mang Xing', 'ZCOOL QingKe HuangYou', 'Noto Serif SC', serif;
+  font-size: 3rem;
+ color: #c4486d;
 }
 
-/* Login inputs/buttons use the serif for Chinese with fallback to Quicksand */
-.login-box input,
+/* Login inputs/buttons use the handwritten font style */
 .login-box button,
 .login-hint {
-  font-family: 'Noto Serif SC', 'Quicksand', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  font-family: 'Zhi Mang Xing', 'ZCOOL QingKe HuangYou', 'Noto Serif SC', serif;
 }
-.login-box input::placeholder { color: rgba(123,31,58,0.6); }
+
+/* 输入框已经单独设置了字体，保持不变 */
+.login-box input::placeholder { color: rgba(233, 113, 149, 0.6); }
 
 /* Handwritten/modern Chinese theme for inputs and buttons */
 .cover h1, .cover-prompt { text-rendering: optimizeLegibility; }

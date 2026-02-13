@@ -191,8 +191,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .one {
-  font-family: 'Zhi Mang Xing', 'ZCOOL QingKe HuangYou', 'Dancing Script', cursive;
-  font-size: 4.4rem;
+  font-family: 'Dancing Script', cursive;
+  font-size: 3.6rem;
   color: #7b1f3a;
   max-width: 820px;
   margin: 0 auto;
@@ -214,7 +214,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .three {
-  font-size: 2.8rem;
+  font-size: 2.4rem;
   color: #8a2340;
   max-width: 700px;
   margin: 0 auto;
@@ -253,29 +253,11 @@ h1, h2, h3, h4, h5, h6 {
   border-radius: 3px;
 }
 
-.five {
-  /* make this section occupy full viewport and center each line */
-  position: relative;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 0.6rem;
-  padding: 2rem;
-}
-
 .five p {
-  position: static;
-  margin: 0;
-  text-align: center;
-  line-height: 1.05;
-  /* large decorative handwritten font so each line fills the page */
-  font-family: 'Zhi Mang Xing', 'Ma Shan Zheng', 'Dancing Script', 'Great Vibes', 'Noto Serif SC', serif;
-  font-size: clamp(2.6rem, 8vw, 6.4rem);
-  color: #8a243f;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font-size: 2rem;
+  position: absolute;
+  left: 0;
+  right: 0;
 }
 
 .idea-3 strong {
@@ -400,7 +382,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .wish-hbd {
-  font-size: 2.6em;
+  font-size: 1.8em;
   margin: 0;
   color: #ff69b4;
 }
@@ -420,23 +402,13 @@ h1, h2, h3, h4, h5, h6 {
 
 .wish h5 {
   font-weight: lighter;
-  font-size: 1.6rem;
-  margin: 10px 0 0;
+  font-size: 1.3rem;
+  margin: 8px 0 0;
   color: #7b1f3a;
 }
 
-/* Make the wished/lyrics text use the hand-written Chinese fonts and be larger */
-#wishText,
-.lyrics-inner {
-  font-family: 'Zhi Mang Xing', 'Ma Shan Zheng', 'Noto Serif SC', 'Dancing Script', 'Quicksand', serif;
-  font-size: clamp(1.6rem, 2.6vw, 2.8rem);
-  line-height: 1.6;
-  color: #6a2030;
-  text-align: center;
-}
-
 .nine p {
-  font-size: 2.4rem;
+  font-size: 2rem;
   font-weight: lighter;
 }
 
@@ -563,7 +535,7 @@ h1, h2, h3, h4, h5, h6 {
   width: calc(100% - 28px);
   height: 36px;
   margin: 10px 14px 0 14px;
-  background: #ffffff;
+  background: transparent;
 }
 .player-shape .hidden-when-audio { display: block; }
 
@@ -709,57 +681,3 @@ h1, h2, h3, h4, h5, h6 {
   .player-shape { width: 300px; height: 90px; }
   .lyrics-panel, .lyrics-panel.open { width: 300px; }
 }
-
-/* ====== Valentine handwritten section styles (applies to main pages) ====== */
-.one, .three, .four, .five, .six, .seven, .eight, .nine {
-  --val-color: #6b2730;
-  --val-accent: #ff7aa2;
-  font-family: 'Zhi Mang Xing', 'ZCOOL QingKe HuangYou', 'Great Vibes', 'Dancing Script', 'Quicksand', sans-serif;
-  color: var(--val-color);
-}
-
-/* Script headings */
-.one h1, .three p, .four .text-box p, .five p, .wish-hbd, .nine p {
-  font-family: 'Dancing Script', 'Great Vibes', 'Zhi Mang Xing', cursive;
-  color: #c02a5b;
-  letter-spacing: 0.4px;
-}
-
-/* Paragraphs: readable, relaxed leading for romantic tone */
-.one p, .three p, .four p, .five p, .six p, .seven p, .eight p, .nine p {
-  font-family: 'Zhi Mang Xing', 'Quicksand', 'Noto Serif SC', serif;
-  font-size: 1.25rem;
-  line-height: 1.9;
-  color: #5a252f;
-  margin-bottom: 14px;
-}
-
-/* Heading heart accent */
-.one h1::before, .wish-hbd::before {
-  content: '❤';
-  margin-right: 8px;
-  color: var(--val-accent);
-  display: inline-block;
-  transform: translateY(-2px);
-}
-
-/* Warm card backgrounds for blocks */
-.one, .three, .four .text-box, .five, .wish {
-  background: linear-gradient(180deg, rgba(255,245,247,0.95), rgba(255,240,244,0.95));
-  border: 1px solid rgba(255,200,215,0.35);
-}
-
-/* Emphasize special spans */
-.idea-5 span, .idea-6 span, .wish-hbd span { color: var(--val-accent); }
-
-/* Slight transform on paragraph hover to feel playful */
-.one p:hover, .three p:hover, .four p:hover { transform: translateY(-2px); transition: transform 0.18s ease; }
-
-/* Responsive tweaks */
-@media screen and (max-width: 600px) {
-  .one h1 { font-size: 2.4rem; }
-  .three { font-size: 1.8rem; }
-  .one p, .three p { font-size: 1rem; }
-}
-
-/* end Valentine handwritten styles */
